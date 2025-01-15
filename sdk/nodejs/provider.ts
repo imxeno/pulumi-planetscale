@@ -2,20 +2,17 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as enums from "./types/enums";
 import * as utilities from "./utilities";
 
 /**
- * The provider type for the xyz package. By default, resources use package-wide configuration
+ * The provider type for the planetscale package. By default, resources use package-wide configuration
  * settings, however an explicit `Provider` instance may be created and passed during resource
  * construction to achieve fine-grained programmatic control over provider settings. See the
  * [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
  */
 export class Provider extends pulumi.ProviderResource {
     /** @internal */
-    public static readonly __pulumiType = 'xyz';
+    public static readonly __pulumiType = 'planetscale';
 
     /**
      * Returns true if the given object is an instance of Provider.  This is designed to work even
@@ -28,6 +25,25 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
+    /**
+     * Name of the service token to use. Alternatively, use `PLANETSCALE_SERVICE_TOKEN_NAME`. Mutually exclusive with
+     * `serviceTokenName` and `serviceToken`.
+     */
+    public readonly accessToken!: pulumi.Output<string | undefined>;
+    /**
+     * If set, points the API client to a different endpoint than `https:://api.planetscale.com/v1`.
+     */
+    public readonly endpoint!: pulumi.Output<string | undefined>;
+    /**
+     * Value of the service token to use. Alternatively, use `PLANETSCALE_SERVICE_TOKEN`. Mutually exclusive with
+     * `accessToken`.
+     */
+    public readonly serviceToken!: pulumi.Output<string | undefined>;
+    /**
+     * Name of the service token to use. Alternatively, use `PLANETSCALE_SERVICE_TOKEN_NAME`. Mutually exclusive with
+     * `accessToken`.
+     */
+    public readonly serviceTokenName!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -40,9 +56,14 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["accessToken"] = args?.accessToken ? pulumi.secret(args.accessToken) : undefined;
+            resourceInputs["endpoint"] = args ? args.endpoint : undefined;
+            resourceInputs["serviceToken"] = args?.serviceToken ? pulumi.secret(args.serviceToken) : undefined;
+            resourceInputs["serviceTokenName"] = args ? args.serviceTokenName : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["accessToken", "serviceToken"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -52,7 +73,22 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     /**
-     * A region which should be used.
+     * Name of the service token to use. Alternatively, use `PLANETSCALE_SERVICE_TOKEN_NAME`. Mutually exclusive with
+     * `serviceTokenName` and `serviceToken`.
      */
-    region?: pulumi.Input<enums.region.Region>;
+    accessToken?: pulumi.Input<string>;
+    /**
+     * If set, points the API client to a different endpoint than `https:://api.planetscale.com/v1`.
+     */
+    endpoint?: pulumi.Input<string>;
+    /**
+     * Value of the service token to use. Alternatively, use `PLANETSCALE_SERVICE_TOKEN`. Mutually exclusive with
+     * `accessToken`.
+     */
+    serviceToken?: pulumi.Input<string>;
+    /**
+     * Name of the service token to use. Alternatively, use `PLANETSCALE_SERVICE_TOKEN_NAME`. Mutually exclusive with
+     * `accessToken`.
+     */
+    serviceTokenName?: pulumi.Input<string>;
 }

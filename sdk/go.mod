@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-xyz/sdk
+module github.com/imxeno/pulumi-planetscale/sdk
 
 go 1.21
 

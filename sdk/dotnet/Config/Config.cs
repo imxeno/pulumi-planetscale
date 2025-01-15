@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Pulumi.Xyz
+namespace Pulumi.Planetscale
 {
     public static class Config
     {
@@ -30,16 +30,49 @@ namespace Pulumi.Xyz
             }
         }
 
-        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("xyz");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("planetscale");
 
-        private static readonly __Value<Pulumi.Xyz.Region.Region?> _region = new __Value<Pulumi.Xyz.Region.Region?>(() => __config.GetObject<Pulumi.Xyz.Region.Region>("region"));
+        private static readonly __Value<string?> _accessToken = new __Value<string?>(() => __config.Get("accessToken"));
         /// <summary>
-        /// A region which should be used.
+        /// Name of the service token to use. Alternatively, use `PLANETSCALE_SERVICE_TOKEN_NAME`. Mutually exclusive with
+        /// `service_token_name` and `service_token`.
         /// </summary>
-        public static Pulumi.Xyz.Region.Region? Region
+        public static string? AccessToken
         {
-            get => _region.Get();
-            set => _region.Set(value);
+            get => _accessToken.Get();
+            set => _accessToken.Set(value);
+        }
+
+        private static readonly __Value<string?> _endpoint = new __Value<string?>(() => __config.Get("endpoint"));
+        /// <summary>
+        /// If set, points the API client to a different endpoint than `https:://api.planetscale.com/v1`.
+        /// </summary>
+        public static string? Endpoint
+        {
+            get => _endpoint.Get();
+            set => _endpoint.Set(value);
+        }
+
+        private static readonly __Value<string?> _serviceToken = new __Value<string?>(() => __config.Get("serviceToken"));
+        /// <summary>
+        /// Value of the service token to use. Alternatively, use `PLANETSCALE_SERVICE_TOKEN`. Mutually exclusive with
+        /// `access_token`.
+        /// </summary>
+        public static string? ServiceToken
+        {
+            get => _serviceToken.Get();
+            set => _serviceToken.Set(value);
+        }
+
+        private static readonly __Value<string?> _serviceTokenName = new __Value<string?>(() => __config.Get("serviceTokenName"));
+        /// <summary>
+        /// Name of the service token to use. Alternatively, use `PLANETSCALE_SERVICE_TOKEN_NAME`. Mutually exclusive with
+        /// `access_token`.
+        /// </summary>
+        public static string? ServiceTokenName
+        {
+            get => _serviceTokenName.Get();
+            set => _serviceTokenName.Set(value);
         }
 
     }
