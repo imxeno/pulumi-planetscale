@@ -24,7 +24,7 @@ import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/pkg/v3/codegen/schema"
-	planetscale "github.com/planetscale/terraform-provider-planetscale/provider" // Import the upstream provider
+	planetscale "github.com/planetscale/terraform-provider-planetscale/internal/provider" // Import the upstream provider
 
 	"github.com/imxeno/pulumi-planetscale/provider/pkg/version"
 )
