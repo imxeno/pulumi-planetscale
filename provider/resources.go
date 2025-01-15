@@ -20,11 +20,12 @@ import (
 	// Allow embedding bridge-metadata.json in the provider.
 	_ "embed"
 
+	"github.com/planetscale/terraform-provider-planetscale/shim"
+
+	pf "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
-	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/pkg/v3/codegen/schema"
-	planetscale "github.com/planetscale/terraform-provider-planetscale/internal/provider" // Import the upstream provider
 
 	"github.com/imxeno/pulumi-planetscale/provider/pkg/version"
 )
@@ -105,7 +106,7 @@ func Provider() tfbridge.ProviderInfo {
 		// - "github.com/hashicorp/terraform-plugin-framework/provider".Provider (for plugin-framework)
 		//
 		//nolint:lll
-		P: shimv2.NewProvider(planetscale.New(version.Version)()),
+		P: pf.ShimProvider(shim.NewProvider()),
 
 		Name:    "planetscale",
 		Version: version.Version,
@@ -135,14 +136,14 @@ func Provider() tfbridge.ProviderInfo {
 		Repository: "https://github.com/imxeno/pulumi-planetscale",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this should
 		// match the TF provider module's require directive, not any replace directives.
-		GitHubOrg:    "",
+		GitHubOrg:    "planetscale",
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		Config: map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
-			"region": {
-				Type: "planetscale:region/region:Region",
-			},
+			// "region": {
+			// 	Type: "planetscale:region/region:Region",
+			// },
 		},
 		// If extra types are needed for configuration, they can be added here.
 		ExtraTypes: map[string]schema.ComplexTypeSpec{

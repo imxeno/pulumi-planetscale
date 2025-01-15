@@ -6,5 +6,5 @@ import (
 )
 
 func NewProvider() tfpf.Provider {
-	return provider.New()
+	return provider.New("test", false)()
 }
