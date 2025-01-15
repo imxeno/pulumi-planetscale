@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-xyz/examples
+module github.com/imxeno/pulumi-planetscale/examples
 
 go 1.21
 
