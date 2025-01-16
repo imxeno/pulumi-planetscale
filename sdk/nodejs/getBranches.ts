@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@pulumi/planetscale";
+ * import * as planetscale from "@imxeno/pulumi-planetscale";
  *
  * const example = planetscale.getBranches({
  *     organization: "example.com",
@@ -23,33 +23,40 @@ import * as utilities from "./utilities";
  * export const branches = example;
  * ```
  */
-export function getBranches(args: GetBranchesArgs, opts?: pulumi.InvokeOptions): Promise<GetBranchesResult> {
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("planetscale:index/getBranches:getBranches", {
-        "database": args.database,
-        "organization": args.organization,
-    }, opts);
+export function getBranches(
+  args: GetBranchesArgs,
+  opts?: pulumi.InvokeOptions
+): Promise<GetBranchesResult> {
+  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+  return pulumi.runtime.invoke(
+    "planetscale:index/getBranches:getBranches",
+    {
+      database: args.database,
+      organization: args.organization,
+    },
+    opts
+  );
 }
 
 /**
  * A collection of arguments for invoking getBranches.
  */
 export interface GetBranchesArgs {
-    database: string;
-    organization: string;
+  database: string;
+  organization: string;
 }
 
 /**
  * A collection of values returned by getBranches.
  */
 export interface GetBranchesResult {
-    readonly branches: outputs.GetBranchesBranch[];
-    readonly database: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    readonly organization: string;
+  readonly branches: outputs.GetBranchesBranch[];
+  readonly database: string;
+  /**
+   * The provider-assigned unique ID for this managed resource.
+   */
+  readonly id: string;
+  readonly organization: string;
 }
 /**
  * A list of PlanetScale branches.
@@ -58,7 +65,7 @@ export interface GetBranchesResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@pulumi/planetscale";
+ * import * as planetscale from "@imxeno/pulumi-planetscale";
  *
  * const example = planetscale.getBranches({
  *     organization: "example.com",
@@ -67,18 +74,25 @@ export interface GetBranchesResult {
  * export const branches = example;
  * ```
  */
-export function getBranchesOutput(args: GetBranchesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBranchesResult> {
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invokeOutput("planetscale:index/getBranches:getBranches", {
-        "database": args.database,
-        "organization": args.organization,
-    }, opts);
+export function getBranchesOutput(
+  args: GetBranchesOutputArgs,
+  opts?: pulumi.InvokeOutputOptions
+): pulumi.Output<GetBranchesResult> {
+  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+  return pulumi.runtime.invokeOutput(
+    "planetscale:index/getBranches:getBranches",
+    {
+      database: args.database,
+      organization: args.organization,
+    },
+    opts
+  );
 }
 
 /**
  * A collection of arguments for invoking getBranches.
  */
 export interface GetBranchesOutputArgs {
-    database: pulumi.Input<string>;
-    organization: pulumi.Input<string>;
+  database: pulumi.Input<string>;
+  organization: pulumi.Input<string>;
 }

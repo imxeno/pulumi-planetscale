@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@pulumi/planetscale";
+ * import * as planetscale from "@imxeno/pulumi-planetscale";
  *
  * const example = new planetscale.Branch("example", {
  *     organization: "example",
@@ -25,282 +25,305 @@ import * as utilities from "./utilities";
  * ```
  */
 export class Branch extends pulumi.CustomResource {
-    /**
-     * Get an existing Branch resource's state with the given name, ID, and optional extra
-     * properties used to qualify the lookup.
-     *
-     * @param name The _unique_ name of the resulting resource.
-     * @param id The _unique_ provider ID of the resource to lookup.
-     * @param state Any extra arguments used during the lookup.
-     * @param opts Optional settings to control the behavior of the CustomResource.
-     */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: BranchState, opts?: pulumi.CustomResourceOptions): Branch {
-        return new Branch(name, <any>state, { ...opts, id: id });
+  /**
+   * Get an existing Branch resource's state with the given name, ID, and optional extra
+   * properties used to qualify the lookup.
+   *
+   * @param name The _unique_ name of the resulting resource.
+   * @param id The _unique_ provider ID of the resource to lookup.
+   * @param state Any extra arguments used during the lookup.
+   * @param opts Optional settings to control the behavior of the CustomResource.
+   */
+  public static get(
+    name: string,
+    id: pulumi.Input<pulumi.ID>,
+    state?: BranchState,
+    opts?: pulumi.CustomResourceOptions
+  ): Branch {
+    return new Branch(name, <any>state, { ...opts, id: id });
+  }
+
+  /** @internal */
+  public static readonly __pulumiType = "planetscale:index/branch:Branch";
+
+  /**
+   * Returns true if the given object is an instance of Branch.  This is designed to work even
+   * when multiple copies of the Pulumi SDK have been loaded into the same process.
+   */
+  public static isInstance(obj: any): obj is Branch {
+    if (obj === undefined || obj === null) {
+      return false;
     }
+    return obj["__pulumiType"] === Branch.__pulumiType;
+  }
 
-    /** @internal */
-    public static readonly __pulumiType = 'planetscale:index/branch:Branch';
+  /**
+   * The actor who created this branch.
+   */
+  public readonly /*out*/ actor!: pulumi.Output<outputs.BranchActor>;
+  /**
+   * The SKU representing the branch's cluster size.
+   */
+  public readonly /*out*/ clusterRateName!: pulumi.Output<string>;
+  /**
+   * When the branch was created.
+   */
+  public readonly /*out*/ createdAt!: pulumi.Output<string>;
+  /**
+   * The database this branch belongs to.
+   */
+  public readonly database!: pulumi.Output<string>;
+  /**
+   * Planetscale app URL for the branch.
+   */
+  public readonly /*out*/ htmlUrl!: pulumi.Output<string>;
+  /**
+   * The MySQL address for the branch.
+   */
+  public readonly /*out*/ mysqlAddress!: pulumi.Output<string>;
+  /**
+   * The address of the MySQL provider for the branch.
+   */
+  public readonly /*out*/ mysqlEdgeAddress!: pulumi.Output<string>;
+  /**
+   * The name of the branch.
+   */
+  public readonly name!: pulumi.Output<string>;
+  /**
+   * The organization this branch belongs to.
+   */
+  public readonly organization!: pulumi.Output<string>;
+  /**
+   * The name of the parent branch from which the branch was created.
+   */
+  public readonly parentBranch!: pulumi.Output<string>;
+  /**
+   * Whether or not the branch is a production branch.
+   */
+  public readonly production!: pulumi.Output<boolean>;
+  /**
+   * Whether or not the branch is ready to serve queries.
+   */
+  public readonly /*out*/ ready!: pulumi.Output<boolean>;
+  /**
+   * The region in which this branch lives.
+   */
+  public readonly /*out*/ region!: pulumi.Output<outputs.BranchRegion>;
+  /**
+   * When a user last marked a backup restore checklist as completed.
+   */
+  public readonly /*out*/ restoreChecklistCompletedAt!: pulumi.Output<string>;
+  /**
+   * todo
+   */
+  public readonly /*out*/ restoredFromBranch!: pulumi.Output<outputs.BranchRestoredFromBranch>;
+  /**
+   * When the schema for the branch was last updated.
+   */
+  public readonly /*out*/ schemaLastUpdatedAt!: pulumi.Output<string>;
+  /**
+   * The number of shards in the branch.
+   */
+  public readonly /*out*/ shardCount!: pulumi.Output<number>;
+  /**
+   * Whether or not the branch is sharded.
+   */
+  public readonly /*out*/ sharded!: pulumi.Output<boolean>;
+  /**
+   * When the branch was last updated.
+   */
+  public readonly /*out*/ updatedAt!: pulumi.Output<string>;
 
-    /**
-     * Returns true if the given object is an instance of Branch.  This is designed to work even
-     * when multiple copies of the Pulumi SDK have been loaded into the same process.
-     */
-    public static isInstance(obj: any): obj is Branch {
-        if (obj === undefined || obj === null) {
-            return false;
-        }
-        return obj['__pulumiType'] === Branch.__pulumiType;
+  /**
+   * Create a Branch resource with the given unique name, arguments, and options.
+   *
+   * @param name The _unique_ name of the resource.
+   * @param args The arguments to use to populate this resource's properties.
+   * @param opts A bag of options that control this resource's behavior.
+   */
+  constructor(
+    name: string,
+    args: BranchArgs,
+    opts?: pulumi.CustomResourceOptions
+  );
+  constructor(
+    name: string,
+    argsOrState?: BranchArgs | BranchState,
+    opts?: pulumi.CustomResourceOptions
+  ) {
+    let resourceInputs: pulumi.Inputs = {};
+    opts = opts || {};
+    if (opts.id) {
+      const state = argsOrState as BranchState | undefined;
+      resourceInputs["actor"] = state ? state.actor : undefined;
+      resourceInputs["clusterRateName"] = state
+        ? state.clusterRateName
+        : undefined;
+      resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+      resourceInputs["database"] = state ? state.database : undefined;
+      resourceInputs["htmlUrl"] = state ? state.htmlUrl : undefined;
+      resourceInputs["mysqlAddress"] = state ? state.mysqlAddress : undefined;
+      resourceInputs["mysqlEdgeAddress"] = state
+        ? state.mysqlEdgeAddress
+        : undefined;
+      resourceInputs["name"] = state ? state.name : undefined;
+      resourceInputs["organization"] = state ? state.organization : undefined;
+      resourceInputs["parentBranch"] = state ? state.parentBranch : undefined;
+      resourceInputs["production"] = state ? state.production : undefined;
+      resourceInputs["ready"] = state ? state.ready : undefined;
+      resourceInputs["region"] = state ? state.region : undefined;
+      resourceInputs["restoreChecklistCompletedAt"] = state
+        ? state.restoreChecklistCompletedAt
+        : undefined;
+      resourceInputs["restoredFromBranch"] = state
+        ? state.restoredFromBranch
+        : undefined;
+      resourceInputs["schemaLastUpdatedAt"] = state
+        ? state.schemaLastUpdatedAt
+        : undefined;
+      resourceInputs["shardCount"] = state ? state.shardCount : undefined;
+      resourceInputs["sharded"] = state ? state.sharded : undefined;
+      resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+    } else {
+      const args = argsOrState as BranchArgs | undefined;
+      if ((!args || args.database === undefined) && !opts.urn) {
+        throw new Error("Missing required property 'database'");
+      }
+      if ((!args || args.organization === undefined) && !opts.urn) {
+        throw new Error("Missing required property 'organization'");
+      }
+      if ((!args || args.parentBranch === undefined) && !opts.urn) {
+        throw new Error("Missing required property 'parentBranch'");
+      }
+      resourceInputs["database"] = args ? args.database : undefined;
+      resourceInputs["name"] = args ? args.name : undefined;
+      resourceInputs["organization"] = args ? args.organization : undefined;
+      resourceInputs["parentBranch"] = args ? args.parentBranch : undefined;
+      resourceInputs["production"] = args ? args.production : undefined;
+      resourceInputs["actor"] = undefined /*out*/;
+      resourceInputs["clusterRateName"] = undefined /*out*/;
+      resourceInputs["createdAt"] = undefined /*out*/;
+      resourceInputs["htmlUrl"] = undefined /*out*/;
+      resourceInputs["mysqlAddress"] = undefined /*out*/;
+      resourceInputs["mysqlEdgeAddress"] = undefined /*out*/;
+      resourceInputs["ready"] = undefined /*out*/;
+      resourceInputs["region"] = undefined /*out*/;
+      resourceInputs["restoreChecklistCompletedAt"] = undefined /*out*/;
+      resourceInputs["restoredFromBranch"] = undefined /*out*/;
+      resourceInputs["schemaLastUpdatedAt"] = undefined /*out*/;
+      resourceInputs["shardCount"] = undefined /*out*/;
+      resourceInputs["sharded"] = undefined /*out*/;
+      resourceInputs["updatedAt"] = undefined /*out*/;
     }
-
-    /**
-     * The actor who created this branch.
-     */
-    public /*out*/ readonly actor!: pulumi.Output<outputs.BranchActor>;
-    /**
-     * The SKU representing the branch's cluster size.
-     */
-    public /*out*/ readonly clusterRateName!: pulumi.Output<string>;
-    /**
-     * When the branch was created.
-     */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
-    /**
-     * The database this branch belongs to.
-     */
-    public readonly database!: pulumi.Output<string>;
-    /**
-     * Planetscale app URL for the branch.
-     */
-    public /*out*/ readonly htmlUrl!: pulumi.Output<string>;
-    /**
-     * The MySQL address for the branch.
-     */
-    public /*out*/ readonly mysqlAddress!: pulumi.Output<string>;
-    /**
-     * The address of the MySQL provider for the branch.
-     */
-    public /*out*/ readonly mysqlEdgeAddress!: pulumi.Output<string>;
-    /**
-     * The name of the branch.
-     */
-    public readonly name!: pulumi.Output<string>;
-    /**
-     * The organization this branch belongs to.
-     */
-    public readonly organization!: pulumi.Output<string>;
-    /**
-     * The name of the parent branch from which the branch was created.
-     */
-    public readonly parentBranch!: pulumi.Output<string>;
-    /**
-     * Whether or not the branch is a production branch.
-     */
-    public readonly production!: pulumi.Output<boolean>;
-    /**
-     * Whether or not the branch is ready to serve queries.
-     */
-    public /*out*/ readonly ready!: pulumi.Output<boolean>;
-    /**
-     * The region in which this branch lives.
-     */
-    public /*out*/ readonly region!: pulumi.Output<outputs.BranchRegion>;
-    /**
-     * When a user last marked a backup restore checklist as completed.
-     */
-    public /*out*/ readonly restoreChecklistCompletedAt!: pulumi.Output<string>;
-    /**
-     * todo
-     */
-    public /*out*/ readonly restoredFromBranch!: pulumi.Output<outputs.BranchRestoredFromBranch>;
-    /**
-     * When the schema for the branch was last updated.
-     */
-    public /*out*/ readonly schemaLastUpdatedAt!: pulumi.Output<string>;
-    /**
-     * The number of shards in the branch.
-     */
-    public /*out*/ readonly shardCount!: pulumi.Output<number>;
-    /**
-     * Whether or not the branch is sharded.
-     */
-    public /*out*/ readonly sharded!: pulumi.Output<boolean>;
-    /**
-     * When the branch was last updated.
-     */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
-
-    /**
-     * Create a Branch resource with the given unique name, arguments, and options.
-     *
-     * @param name The _unique_ name of the resource.
-     * @param args The arguments to use to populate this resource's properties.
-     * @param opts A bag of options that control this resource's behavior.
-     */
-    constructor(name: string, args: BranchArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: BranchArgs | BranchState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
-        opts = opts || {};
-        if (opts.id) {
-            const state = argsOrState as BranchState | undefined;
-            resourceInputs["actor"] = state ? state.actor : undefined;
-            resourceInputs["clusterRateName"] = state ? state.clusterRateName : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["database"] = state ? state.database : undefined;
-            resourceInputs["htmlUrl"] = state ? state.htmlUrl : undefined;
-            resourceInputs["mysqlAddress"] = state ? state.mysqlAddress : undefined;
-            resourceInputs["mysqlEdgeAddress"] = state ? state.mysqlEdgeAddress : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organization"] = state ? state.organization : undefined;
-            resourceInputs["parentBranch"] = state ? state.parentBranch : undefined;
-            resourceInputs["production"] = state ? state.production : undefined;
-            resourceInputs["ready"] = state ? state.ready : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["restoreChecklistCompletedAt"] = state ? state.restoreChecklistCompletedAt : undefined;
-            resourceInputs["restoredFromBranch"] = state ? state.restoredFromBranch : undefined;
-            resourceInputs["schemaLastUpdatedAt"] = state ? state.schemaLastUpdatedAt : undefined;
-            resourceInputs["shardCount"] = state ? state.shardCount : undefined;
-            resourceInputs["sharded"] = state ? state.sharded : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-        } else {
-            const args = argsOrState as BranchArgs | undefined;
-            if ((!args || args.database === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'database'");
-            }
-            if ((!args || args.organization === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'organization'");
-            }
-            if ((!args || args.parentBranch === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'parentBranch'");
-            }
-            resourceInputs["database"] = args ? args.database : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["organization"] = args ? args.organization : undefined;
-            resourceInputs["parentBranch"] = args ? args.parentBranch : undefined;
-            resourceInputs["production"] = args ? args.production : undefined;
-            resourceInputs["actor"] = undefined /*out*/;
-            resourceInputs["clusterRateName"] = undefined /*out*/;
-            resourceInputs["createdAt"] = undefined /*out*/;
-            resourceInputs["htmlUrl"] = undefined /*out*/;
-            resourceInputs["mysqlAddress"] = undefined /*out*/;
-            resourceInputs["mysqlEdgeAddress"] = undefined /*out*/;
-            resourceInputs["ready"] = undefined /*out*/;
-            resourceInputs["region"] = undefined /*out*/;
-            resourceInputs["restoreChecklistCompletedAt"] = undefined /*out*/;
-            resourceInputs["restoredFromBranch"] = undefined /*out*/;
-            resourceInputs["schemaLastUpdatedAt"] = undefined /*out*/;
-            resourceInputs["shardCount"] = undefined /*out*/;
-            resourceInputs["sharded"] = undefined /*out*/;
-            resourceInputs["updatedAt"] = undefined /*out*/;
-        }
-        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(Branch.__pulumiType, name, resourceInputs, opts);
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    super(Branch.__pulumiType, name, resourceInputs, opts);
+  }
 }
 
 /**
  * Input properties used for looking up and filtering Branch resources.
  */
 export interface BranchState {
-    /**
-     * The actor who created this branch.
-     */
-    actor?: pulumi.Input<inputs.BranchActor>;
-    /**
-     * The SKU representing the branch's cluster size.
-     */
-    clusterRateName?: pulumi.Input<string>;
-    /**
-     * When the branch was created.
-     */
-    createdAt?: pulumi.Input<string>;
-    /**
-     * The database this branch belongs to.
-     */
-    database?: pulumi.Input<string>;
-    /**
-     * Planetscale app URL for the branch.
-     */
-    htmlUrl?: pulumi.Input<string>;
-    /**
-     * The MySQL address for the branch.
-     */
-    mysqlAddress?: pulumi.Input<string>;
-    /**
-     * The address of the MySQL provider for the branch.
-     */
-    mysqlEdgeAddress?: pulumi.Input<string>;
-    /**
-     * The name of the branch.
-     */
-    name?: pulumi.Input<string>;
-    /**
-     * The organization this branch belongs to.
-     */
-    organization?: pulumi.Input<string>;
-    /**
-     * The name of the parent branch from which the branch was created.
-     */
-    parentBranch?: pulumi.Input<string>;
-    /**
-     * Whether or not the branch is a production branch.
-     */
-    production?: pulumi.Input<boolean>;
-    /**
-     * Whether or not the branch is ready to serve queries.
-     */
-    ready?: pulumi.Input<boolean>;
-    /**
-     * The region in which this branch lives.
-     */
-    region?: pulumi.Input<inputs.BranchRegion>;
-    /**
-     * When a user last marked a backup restore checklist as completed.
-     */
-    restoreChecklistCompletedAt?: pulumi.Input<string>;
-    /**
-     * todo
-     */
-    restoredFromBranch?: pulumi.Input<inputs.BranchRestoredFromBranch>;
-    /**
-     * When the schema for the branch was last updated.
-     */
-    schemaLastUpdatedAt?: pulumi.Input<string>;
-    /**
-     * The number of shards in the branch.
-     */
-    shardCount?: pulumi.Input<number>;
-    /**
-     * Whether or not the branch is sharded.
-     */
-    sharded?: pulumi.Input<boolean>;
-    /**
-     * When the branch was last updated.
-     */
-    updatedAt?: pulumi.Input<string>;
+  /**
+   * The actor who created this branch.
+   */
+  actor?: pulumi.Input<inputs.BranchActor>;
+  /**
+   * The SKU representing the branch's cluster size.
+   */
+  clusterRateName?: pulumi.Input<string>;
+  /**
+   * When the branch was created.
+   */
+  createdAt?: pulumi.Input<string>;
+  /**
+   * The database this branch belongs to.
+   */
+  database?: pulumi.Input<string>;
+  /**
+   * Planetscale app URL for the branch.
+   */
+  htmlUrl?: pulumi.Input<string>;
+  /**
+   * The MySQL address for the branch.
+   */
+  mysqlAddress?: pulumi.Input<string>;
+  /**
+   * The address of the MySQL provider for the branch.
+   */
+  mysqlEdgeAddress?: pulumi.Input<string>;
+  /**
+   * The name of the branch.
+   */
+  name?: pulumi.Input<string>;
+  /**
+   * The organization this branch belongs to.
+   */
+  organization?: pulumi.Input<string>;
+  /**
+   * The name of the parent branch from which the branch was created.
+   */
+  parentBranch?: pulumi.Input<string>;
+  /**
+   * Whether or not the branch is a production branch.
+   */
+  production?: pulumi.Input<boolean>;
+  /**
+   * Whether or not the branch is ready to serve queries.
+   */
+  ready?: pulumi.Input<boolean>;
+  /**
+   * The region in which this branch lives.
+   */
+  region?: pulumi.Input<inputs.BranchRegion>;
+  /**
+   * When a user last marked a backup restore checklist as completed.
+   */
+  restoreChecklistCompletedAt?: pulumi.Input<string>;
+  /**
+   * todo
+   */
+  restoredFromBranch?: pulumi.Input<inputs.BranchRestoredFromBranch>;
+  /**
+   * When the schema for the branch was last updated.
+   */
+  schemaLastUpdatedAt?: pulumi.Input<string>;
+  /**
+   * The number of shards in the branch.
+   */
+  shardCount?: pulumi.Input<number>;
+  /**
+   * Whether or not the branch is sharded.
+   */
+  sharded?: pulumi.Input<boolean>;
+  /**
+   * When the branch was last updated.
+   */
+  updatedAt?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a Branch resource.
  */
 export interface BranchArgs {
-    /**
-     * The database this branch belongs to.
-     */
-    database: pulumi.Input<string>;
-    /**
-     * The name of the branch.
-     */
-    name?: pulumi.Input<string>;
-    /**
-     * The organization this branch belongs to.
-     */
-    organization: pulumi.Input<string>;
-    /**
-     * The name of the parent branch from which the branch was created.
-     */
-    parentBranch: pulumi.Input<string>;
-    /**
-     * Whether or not the branch is a production branch.
-     */
-    production?: pulumi.Input<boolean>;
+  /**
+   * The database this branch belongs to.
+   */
+  database: pulumi.Input<string>;
+  /**
+   * The name of the branch.
+   */
+  name?: pulumi.Input<string>;
+  /**
+   * The organization this branch belongs to.
+   */
+  organization: pulumi.Input<string>;
+  /**
+   * The name of the parent branch from which the branch was created.
+   */
+  parentBranch: pulumi.Input<string>;
+  /**
+   * Whether or not the branch is a production branch.
+   */
+  production?: pulumi.Input<boolean>;
 }

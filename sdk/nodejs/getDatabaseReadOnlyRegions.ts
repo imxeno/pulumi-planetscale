@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@pulumi/planetscale";
+ * import * as planetscale from "@imxeno/pulumi-planetscale";
  *
  * const example = planetscale.getDatabaseReadOnlyRegions({
  *     organization: "example.com",
@@ -23,48 +23,55 @@ import * as utilities from "./utilities";
  * export const databaseRoRegions = examplePlanetscaleDatabaseRegions;
  * ```
  */
-export function getDatabaseReadOnlyRegions(args: GetDatabaseReadOnlyRegionsArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseReadOnlyRegionsResult> {
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("planetscale:index/getDatabaseReadOnlyRegions:getDatabaseReadOnlyRegions", {
-        "name": args.name,
-        "organization": args.organization,
-    }, opts);
+export function getDatabaseReadOnlyRegions(
+  args: GetDatabaseReadOnlyRegionsArgs,
+  opts?: pulumi.InvokeOptions
+): Promise<GetDatabaseReadOnlyRegionsResult> {
+  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+  return pulumi.runtime.invoke(
+    "planetscale:index/getDatabaseReadOnlyRegions:getDatabaseReadOnlyRegions",
+    {
+      name: args.name,
+      organization: args.organization,
+    },
+    opts
+  );
 }
 
 /**
  * A collection of arguments for invoking getDatabaseReadOnlyRegions.
  */
 export interface GetDatabaseReadOnlyRegionsArgs {
-    /**
-     * The name of the database for which the read-only regions are available.
-     */
-    name: string;
-    /**
-     * The organization for which the read-only regions are available.
-     */
-    organization: string;
+  /**
+   * The name of the database for which the read-only regions are available.
+   */
+  name: string;
+  /**
+   * The organization for which the read-only regions are available.
+   */
+  organization: string;
 }
 
 /**
  * A collection of values returned by getDatabaseReadOnlyRegions.
  */
 export interface GetDatabaseReadOnlyRegionsResult {
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
-     * The name of the database for which the read-only regions are available.
-     */
-    readonly name: string;
-    /**
-     * The organization for which the read-only regions are available.
-     */
-    readonly organization: string;
-    /**
-     * The list of read-only regions available for the database.
-     */
-    readonly regions: outputs.GetDatabaseReadOnlyRegionsRegion[];
+  /**
+   * The provider-assigned unique ID for this managed resource.
+   */
+  readonly id: string;
+  /**
+   * The name of the database for which the read-only regions are available.
+   */
+  readonly name: string;
+  /**
+   * The organization for which the read-only regions are available.
+   */
+  readonly organization: string;
+  /**
+   * The list of read-only regions available for the database.
+   */
+  readonly regions: outputs.GetDatabaseReadOnlyRegionsRegion[];
 }
 /**
  * A list of PlanetScale read-only regions.
@@ -73,7 +80,7 @@ export interface GetDatabaseReadOnlyRegionsResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@pulumi/planetscale";
+ * import * as planetscale from "@imxeno/pulumi-planetscale";
  *
  * const example = planetscale.getDatabaseReadOnlyRegions({
  *     organization: "example.com",
@@ -82,24 +89,31 @@ export interface GetDatabaseReadOnlyRegionsResult {
  * export const databaseRoRegions = examplePlanetscaleDatabaseRegions;
  * ```
  */
-export function getDatabaseReadOnlyRegionsOutput(args: GetDatabaseReadOnlyRegionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDatabaseReadOnlyRegionsResult> {
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invokeOutput("planetscale:index/getDatabaseReadOnlyRegions:getDatabaseReadOnlyRegions", {
-        "name": args.name,
-        "organization": args.organization,
-    }, opts);
+export function getDatabaseReadOnlyRegionsOutput(
+  args: GetDatabaseReadOnlyRegionsOutputArgs,
+  opts?: pulumi.InvokeOutputOptions
+): pulumi.Output<GetDatabaseReadOnlyRegionsResult> {
+  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+  return pulumi.runtime.invokeOutput(
+    "planetscale:index/getDatabaseReadOnlyRegions:getDatabaseReadOnlyRegions",
+    {
+      name: args.name,
+      organization: args.organization,
+    },
+    opts
+  );
 }
 
 /**
  * A collection of arguments for invoking getDatabaseReadOnlyRegions.
  */
 export interface GetDatabaseReadOnlyRegionsOutputArgs {
-    /**
-     * The name of the database for which the read-only regions are available.
-     */
-    name: pulumi.Input<string>;
-    /**
-     * The organization for which the read-only regions are available.
-     */
-    organization: pulumi.Input<string>;
+  /**
+   * The name of the database for which the read-only regions are available.
+   */
+  name: pulumi.Input<string>;
+  /**
+   * The organization for which the read-only regions are available.
+   */
+  organization: pulumi.Input<string>;
 }
