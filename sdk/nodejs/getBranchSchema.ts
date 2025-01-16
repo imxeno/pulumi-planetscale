@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@imxeno/pulumi-planetscale";
+ * import * as planetscale from "@pulumi/planetscale";
  *
  * const example = planetscale.getBranchSchema({
  *     organization: "example.com",
@@ -24,46 +24,39 @@ import * as utilities from "./utilities";
  * export const branchSchema = example;
  * ```
  */
-export function getBranchSchema(
-  args: GetBranchSchemaArgs,
-  opts?: pulumi.InvokeOptions
-): Promise<GetBranchSchemaResult> {
-  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-  return pulumi.runtime.invoke(
-    "planetscale:index/getBranchSchema:getBranchSchema",
-    {
-      branch: args.branch,
-      database: args.database,
-      keyspace: args.keyspace,
-      organization: args.organization,
-    },
-    opts
-  );
+export function getBranchSchema(args: GetBranchSchemaArgs, opts?: pulumi.InvokeOptions): Promise<GetBranchSchemaResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invoke("planetscale:index/getBranchSchema:getBranchSchema", {
+        "branch": args.branch,
+        "database": args.database,
+        "keyspace": args.keyspace,
+        "organization": args.organization,
+    }, opts);
 }
 
 /**
  * A collection of arguments for invoking getBranchSchema.
  */
 export interface GetBranchSchemaArgs {
-  branch: string;
-  database: string;
-  keyspace?: string;
-  organization: string;
+    branch: string;
+    database: string;
+    keyspace?: string;
+    organization: string;
 }
 
 /**
  * A collection of values returned by getBranchSchema.
  */
 export interface GetBranchSchemaResult {
-  readonly branch: string;
-  readonly database: string;
-  /**
-   * The provider-assigned unique ID for this managed resource.
-   */
-  readonly id: string;
-  readonly keyspace?: string;
-  readonly organization: string;
-  readonly tables: outputs.GetBranchSchemaTable[];
+    readonly branch: string;
+    readonly database: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    readonly keyspace?: string;
+    readonly organization: string;
+    readonly tables: outputs.GetBranchSchemaTable[];
 }
 /**
  * The schema of a PlanetScale branch.
@@ -72,7 +65,7 @@ export interface GetBranchSchemaResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@imxeno/pulumi-planetscale";
+ * import * as planetscale from "@pulumi/planetscale";
  *
  * const example = planetscale.getBranchSchema({
  *     organization: "example.com",
@@ -82,29 +75,22 @@ export interface GetBranchSchemaResult {
  * export const branchSchema = example;
  * ```
  */
-export function getBranchSchemaOutput(
-  args: GetBranchSchemaOutputArgs,
-  opts?: pulumi.InvokeOutputOptions
-): pulumi.Output<GetBranchSchemaResult> {
-  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-  return pulumi.runtime.invokeOutput(
-    "planetscale:index/getBranchSchema:getBranchSchema",
-    {
-      branch: args.branch,
-      database: args.database,
-      keyspace: args.keyspace,
-      organization: args.organization,
-    },
-    opts
-  );
+export function getBranchSchemaOutput(args: GetBranchSchemaOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBranchSchemaResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("planetscale:index/getBranchSchema:getBranchSchema", {
+        "branch": args.branch,
+        "database": args.database,
+        "keyspace": args.keyspace,
+        "organization": args.organization,
+    }, opts);
 }
 
 /**
  * A collection of arguments for invoking getBranchSchema.
  */
 export interface GetBranchSchemaOutputArgs {
-  branch: pulumi.Input<string>;
-  database: pulumi.Input<string>;
-  keyspace?: pulumi.Input<string>;
-  organization: pulumi.Input<string>;
+    branch: pulumi.Input<string>;
+    database: pulumi.Input<string>;
+    keyspace?: pulumi.Input<string>;
+    organization: pulumi.Input<string>;
 }

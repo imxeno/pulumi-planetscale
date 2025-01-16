@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@imxeno/pulumi-planetscale";
+ * import * as planetscale from "@pulumi/planetscale";
  *
  * // requires a feature flag, contact support to enable it
  * const example = planetscale.getOauthApplications({
@@ -23,37 +23,30 @@ import * as utilities from "./utilities";
  * export const oauthApps = example;
  * ```
  */
-export function getOauthApplications(
-  args: GetOauthApplicationsArgs,
-  opts?: pulumi.InvokeOptions
-): Promise<GetOauthApplicationsResult> {
-  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-  return pulumi.runtime.invoke(
-    "planetscale:index/getOauthApplications:getOauthApplications",
-    {
-      organization: args.organization,
-    },
-    opts
-  );
+export function getOauthApplications(args: GetOauthApplicationsArgs, opts?: pulumi.InvokeOptions): Promise<GetOauthApplicationsResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invoke("planetscale:index/getOauthApplications:getOauthApplications", {
+        "organization": args.organization,
+    }, opts);
 }
 
 /**
  * A collection of arguments for invoking getOauthApplications.
  */
 export interface GetOauthApplicationsArgs {
-  organization: string;
+    organization: string;
 }
 
 /**
  * A collection of values returned by getOauthApplications.
  */
 export interface GetOauthApplicationsResult {
-  readonly applications: outputs.GetOauthApplicationsApplication[];
-  /**
-   * The provider-assigned unique ID for this managed resource.
-   */
-  readonly id: string;
-  readonly organization: string;
+    readonly applications: outputs.GetOauthApplicationsApplication[];
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    readonly organization: string;
 }
 /**
  * A list of PlanetScale OAuth applications. (requires feature flag)
@@ -62,7 +55,7 @@ export interface GetOauthApplicationsResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@imxeno/pulumi-planetscale";
+ * import * as planetscale from "@pulumi/planetscale";
  *
  * // requires a feature flag, contact support to enable it
  * const example = planetscale.getOauthApplications({
@@ -71,23 +64,16 @@ export interface GetOauthApplicationsResult {
  * export const oauthApps = example;
  * ```
  */
-export function getOauthApplicationsOutput(
-  args: GetOauthApplicationsOutputArgs,
-  opts?: pulumi.InvokeOutputOptions
-): pulumi.Output<GetOauthApplicationsResult> {
-  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-  return pulumi.runtime.invokeOutput(
-    "planetscale:index/getOauthApplications:getOauthApplications",
-    {
-      organization: args.organization,
-    },
-    opts
-  );
+export function getOauthApplicationsOutput(args: GetOauthApplicationsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOauthApplicationsResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("planetscale:index/getOauthApplications:getOauthApplications", {
+        "organization": args.organization,
+    }, opts);
 }
 
 /**
  * A collection of arguments for invoking getOauthApplications.
  */
 export interface GetOauthApplicationsOutputArgs {
-  organization: pulumi.Input<string>;
+    organization: pulumi.Input<string>;
 }

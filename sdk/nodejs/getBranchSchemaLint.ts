@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@imxeno/pulumi-planetscale";
+ * import * as planetscale from "@pulumi/planetscale";
  *
  * const example = planetscale.getBranchSchemaLint({
  *     organization: "example.com",
@@ -24,43 +24,36 @@ import * as utilities from "./utilities";
  * export const schemaLint = example;
  * ```
  */
-export function getBranchSchemaLint(
-  args: GetBranchSchemaLintArgs,
-  opts?: pulumi.InvokeOptions
-): Promise<GetBranchSchemaLintResult> {
-  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-  return pulumi.runtime.invoke(
-    "planetscale:index/getBranchSchemaLint:getBranchSchemaLint",
-    {
-      branch: args.branch,
-      database: args.database,
-      organization: args.organization,
-    },
-    opts
-  );
+export function getBranchSchemaLint(args: GetBranchSchemaLintArgs, opts?: pulumi.InvokeOptions): Promise<GetBranchSchemaLintResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invoke("planetscale:index/getBranchSchemaLint:getBranchSchemaLint", {
+        "branch": args.branch,
+        "database": args.database,
+        "organization": args.organization,
+    }, opts);
 }
 
 /**
  * A collection of arguments for invoking getBranchSchemaLint.
  */
 export interface GetBranchSchemaLintArgs {
-  branch: string;
-  database: string;
-  organization: string;
+    branch: string;
+    database: string;
+    organization: string;
 }
 
 /**
  * A collection of values returned by getBranchSchemaLint.
  */
 export interface GetBranchSchemaLintResult {
-  readonly branch: string;
-  readonly database: string;
-  readonly errors: outputs.GetBranchSchemaLintError[];
-  /**
-   * The provider-assigned unique ID for this managed resource.
-   */
-  readonly id: string;
-  readonly organization: string;
+    readonly branch: string;
+    readonly database: string;
+    readonly errors: outputs.GetBranchSchemaLintError[];
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    readonly organization: string;
 }
 /**
  * Linting errors for the schema of a PlanetScale branch.
@@ -69,7 +62,7 @@ export interface GetBranchSchemaLintResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@imxeno/pulumi-planetscale";
+ * import * as planetscale from "@pulumi/planetscale";
  *
  * const example = planetscale.getBranchSchemaLint({
  *     organization: "example.com",
@@ -79,27 +72,20 @@ export interface GetBranchSchemaLintResult {
  * export const schemaLint = example;
  * ```
  */
-export function getBranchSchemaLintOutput(
-  args: GetBranchSchemaLintOutputArgs,
-  opts?: pulumi.InvokeOutputOptions
-): pulumi.Output<GetBranchSchemaLintResult> {
-  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-  return pulumi.runtime.invokeOutput(
-    "planetscale:index/getBranchSchemaLint:getBranchSchemaLint",
-    {
-      branch: args.branch,
-      database: args.database,
-      organization: args.organization,
-    },
-    opts
-  );
+export function getBranchSchemaLintOutput(args: GetBranchSchemaLintOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBranchSchemaLintResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("planetscale:index/getBranchSchemaLint:getBranchSchemaLint", {
+        "branch": args.branch,
+        "database": args.database,
+        "organization": args.organization,
+    }, opts);
 }
 
 /**
  * A collection of arguments for invoking getBranchSchemaLint.
  */
 export interface GetBranchSchemaLintOutputArgs {
-  branch: pulumi.Input<string>;
-  database: pulumi.Input<string>;
-  organization: pulumi.Input<string>;
+    branch: pulumi.Input<string>;
+    database: pulumi.Input<string>;
+    organization: pulumi.Input<string>;
 }

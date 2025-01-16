@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@imxeno/pulumi-planetscale";
+ * import * as planetscale from "@pulumi/planetscale";
  *
  * const example = planetscale.getBackups({
  *     organization: "example.com",
@@ -24,43 +24,36 @@ import * as utilities from "./utilities";
  * export const backups = example;
  * ```
  */
-export function getBackups(
-  args: GetBackupsArgs,
-  opts?: pulumi.InvokeOptions
-): Promise<GetBackupsResult> {
-  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-  return pulumi.runtime.invoke(
-    "planetscale:index/getBackups:getBackups",
-    {
-      branch: args.branch,
-      database: args.database,
-      organization: args.organization,
-    },
-    opts
-  );
+export function getBackups(args: GetBackupsArgs, opts?: pulumi.InvokeOptions): Promise<GetBackupsResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invoke("planetscale:index/getBackups:getBackups", {
+        "branch": args.branch,
+        "database": args.database,
+        "organization": args.organization,
+    }, opts);
 }
 
 /**
  * A collection of arguments for invoking getBackups.
  */
 export interface GetBackupsArgs {
-  branch: string;
-  database: string;
-  organization: string;
+    branch: string;
+    database: string;
+    organization: string;
 }
 
 /**
  * A collection of values returned by getBackups.
  */
 export interface GetBackupsResult {
-  readonly backups: outputs.GetBackupsBackup[];
-  readonly branch: string;
-  readonly database: string;
-  /**
-   * The provider-assigned unique ID for this managed resource.
-   */
-  readonly id: string;
-  readonly organization: string;
+    readonly backups: outputs.GetBackupsBackup[];
+    readonly branch: string;
+    readonly database: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    readonly organization: string;
 }
 /**
  * A list of PlanetScale backups.
@@ -69,7 +62,7 @@ export interface GetBackupsResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@imxeno/pulumi-planetscale";
+ * import * as planetscale from "@pulumi/planetscale";
  *
  * const example = planetscale.getBackups({
  *     organization: "example.com",
@@ -79,27 +72,20 @@ export interface GetBackupsResult {
  * export const backups = example;
  * ```
  */
-export function getBackupsOutput(
-  args: GetBackupsOutputArgs,
-  opts?: pulumi.InvokeOutputOptions
-): pulumi.Output<GetBackupsResult> {
-  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-  return pulumi.runtime.invokeOutput(
-    "planetscale:index/getBackups:getBackups",
-    {
-      branch: args.branch,
-      database: args.database,
-      organization: args.organization,
-    },
-    opts
-  );
+export function getBackupsOutput(args: GetBackupsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBackupsResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("planetscale:index/getBackups:getBackups", {
+        "branch": args.branch,
+        "database": args.database,
+        "organization": args.organization,
+    }, opts);
 }
 
 /**
  * A collection of arguments for invoking getBackups.
  */
 export interface GetBackupsOutputArgs {
-  branch: pulumi.Input<string>;
-  database: pulumi.Input<string>;
-  organization: pulumi.Input<string>;
+    branch: pulumi.Input<string>;
+    database: pulumi.Input<string>;
+    organization: pulumi.Input<string>;
 }

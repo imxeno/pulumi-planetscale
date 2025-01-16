@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@imxeno/pulumi-planetscale";
+ * import * as planetscale from "@pulumi/planetscale";
  *
  * const example = planetscale.getPasswords({
  *     organization: "example",
@@ -24,46 +24,39 @@ import * as utilities from "./utilities";
  * export const passwords = example;
  * ```
  */
-export function getPasswords(
-  args: GetPasswordsArgs,
-  opts?: pulumi.InvokeOptions
-): Promise<GetPasswordsResult> {
-  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-  return pulumi.runtime.invoke(
-    "planetscale:index/getPasswords:getPasswords",
-    {
-      branch: args.branch,
-      database: args.database,
-      organization: args.organization,
-      readOnlyRegionId: args.readOnlyRegionId,
-    },
-    opts
-  );
+export function getPasswords(args: GetPasswordsArgs, opts?: pulumi.InvokeOptions): Promise<GetPasswordsResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invoke("planetscale:index/getPasswords:getPasswords", {
+        "branch": args.branch,
+        "database": args.database,
+        "organization": args.organization,
+        "readOnlyRegionId": args.readOnlyRegionId,
+    }, opts);
 }
 
 /**
  * A collection of arguments for invoking getPasswords.
  */
 export interface GetPasswordsArgs {
-  branch: string;
-  database: string;
-  organization: string;
-  readOnlyRegionId?: string;
+    branch: string;
+    database: string;
+    organization: string;
+    readOnlyRegionId?: string;
 }
 
 /**
  * A collection of values returned by getPasswords.
  */
 export interface GetPasswordsResult {
-  readonly branch: string;
-  readonly database: string;
-  /**
-   * The provider-assigned unique ID for this managed resource.
-   */
-  readonly id: string;
-  readonly organization: string;
-  readonly passwords: outputs.GetPasswordsPassword[];
-  readonly readOnlyRegionId?: string;
+    readonly branch: string;
+    readonly database: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    readonly organization: string;
+    readonly passwords: outputs.GetPasswordsPassword[];
+    readonly readOnlyRegionId?: string;
 }
 /**
  * A list of PlanetScale database passwords.
@@ -72,7 +65,7 @@ export interface GetPasswordsResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@imxeno/pulumi-planetscale";
+ * import * as planetscale from "@pulumi/planetscale";
  *
  * const example = planetscale.getPasswords({
  *     organization: "example",
@@ -82,29 +75,22 @@ export interface GetPasswordsResult {
  * export const passwords = example;
  * ```
  */
-export function getPasswordsOutput(
-  args: GetPasswordsOutputArgs,
-  opts?: pulumi.InvokeOutputOptions
-): pulumi.Output<GetPasswordsResult> {
-  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-  return pulumi.runtime.invokeOutput(
-    "planetscale:index/getPasswords:getPasswords",
-    {
-      branch: args.branch,
-      database: args.database,
-      organization: args.organization,
-      readOnlyRegionId: args.readOnlyRegionId,
-    },
-    opts
-  );
+export function getPasswordsOutput(args: GetPasswordsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPasswordsResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("planetscale:index/getPasswords:getPasswords", {
+        "branch": args.branch,
+        "database": args.database,
+        "organization": args.organization,
+        "readOnlyRegionId": args.readOnlyRegionId,
+    }, opts);
 }
 
 /**
  * A collection of arguments for invoking getPasswords.
  */
 export interface GetPasswordsOutputArgs {
-  branch: pulumi.Input<string>;
-  database: pulumi.Input<string>;
-  organization: pulumi.Input<string>;
-  readOnlyRegionId?: pulumi.Input<string>;
+    branch: pulumi.Input<string>;
+    database: pulumi.Input<string>;
+    organization: pulumi.Input<string>;
+    readOnlyRegionId?: pulumi.Input<string>;
 }

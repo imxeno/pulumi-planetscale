@@ -14,32 +14,27 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@imxeno/pulumi-planetscale";
+ * import * as planetscale from "@pulumi/planetscale";
  *
  * const example = planetscale.getOrganizations({});
  * export const orgs = example;
  * ```
  */
-export function getOrganizations(
-  opts?: pulumi.InvokeOptions
-): Promise<GetOrganizationsResult> {
-  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-  return pulumi.runtime.invoke(
-    "planetscale:index/getOrganizations:getOrganizations",
-    {},
-    opts
-  );
+export function getOrganizations(opts?: pulumi.InvokeOptions): Promise<GetOrganizationsResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invoke("planetscale:index/getOrganizations:getOrganizations", {
+    }, opts);
 }
 
 /**
  * A collection of values returned by getOrganizations.
  */
 export interface GetOrganizationsResult {
-  /**
-   * The provider-assigned unique ID for this managed resource.
-   */
-  readonly id: string;
-  readonly organizations: outputs.GetOrganizationsOrganization[];
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    readonly organizations: outputs.GetOrganizationsOrganization[];
 }
 /**
  * A list of PlanetScale organizations.
@@ -48,19 +43,14 @@ export interface GetOrganizationsResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@imxeno/pulumi-planetscale";
+ * import * as planetscale from "@pulumi/planetscale";
  *
  * const example = planetscale.getOrganizations({});
  * export const orgs = example;
  * ```
  */
-export function getOrganizationsOutput(
-  opts?: pulumi.InvokeOutputOptions
-): pulumi.Output<GetOrganizationsResult> {
-  opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-  return pulumi.runtime.invokeOutput(
-    "planetscale:index/getOrganizations:getOrganizations",
-    {},
-    opts
-  );
+export function getOrganizationsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOrganizationsResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("planetscale:index/getOrganizations:getOrganizations", {
+    }, opts);
 }
