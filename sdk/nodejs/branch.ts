@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as planetscale from "@pulumi/planetscale";
+ * import * as planetscale from "@imxeno/pulumi-planetscale";
  *
  * const example = new planetscale.Branch("example", {
  *     organization: "example",
